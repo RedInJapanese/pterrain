@@ -10,79 +10,88 @@ const canvas = document.querySelector('canvas.webgl') //create canvas using the 
 
 // Scene
 const scene = new THREE.Scene()
-
-const axesHelper = new THREE.AxesHelper( 5 );
-scene.add( axesHelper );
+const loader = new THREE.TextureLoader()
 // Object
-const geometry = new THREE.PlaneGeometry(100, 100)
-const material = new THREE.MeshBasicMaterial({visible:false}) //creates an invisible 2d plane 
-const mesh = new THREE.Mesh(geometry, material)
+    let geometry = new THREE.PlaneGeometry(100, 100)
+    var texture = loader.load( 'assets/tile.png', function ( texture ) {
 
-mesh.rotation.x -= Math.PI/2 //what is this part for?
+        texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+        texture.offset.set( 0, 0 );
+        texture.repeat.set( 50, 50);
+    
+    } );
+    let  material = new THREE.MeshBasicMaterial({map:texture}) //creates an invisible 2d plane 
+    let mesh = new THREE.Mesh(geometry, material)
+    mesh.position.x = 0
+    mesh.position.z = 0
+    mesh.rotation.x -= Math.PI/2
+    scene.add(mesh)
 
-const grid = new THREE.GridHelper(100, 100) //three.js class that adds a 2d grid to a given scene
-scene.add(mesh)
-mesh.name = 'floor'
-scene.add(grid)
+    const geometry2 = new THREE.PlaneGeometry(7, 7)
+    const  material2 = new THREE.MeshBasicMaterial({map:loader.load('assets/tree2.png'), transparent: true}) //creates an invisible 2d plane 
 
 
-//Note: it looks like a square in the grid is 0.5/0.5
-const highlight = new THREE.BoxGeometry(1,1,1) //creating the cursor
-const highlight_mat = new THREE.MeshBasicMaterial({color: 'white', wireframe:true, side: THREE.DoubleSide}) //creating the material
-const h_mesh = new THREE.Mesh(highlight, highlight_mat)
-h_mesh.position.x = 0.5 //set the position in the grid
-h_mesh.position.z = 0.5
-scene.add(h_mesh)
+    const geometry3 = new THREE.PlaneGeometry(40, 40)
+    const  material3 = new THREE.MeshBasicMaterial({map:loader.load('assets/sun.png'), transparent: true}) //creates an invisible 2d plane 
+    const sun = new THREE.Mesh(geometry3, material3)
+    sun.position.y = 100
+    sun.rotation.x -= Math.PI/2
+    sun.material.side = THREE.DoubleSide
+    scene.add(sun)
 
-//mouse hovering
-// this is gonna be implemented using the raycaster class which is used for mouse picking 
-//(raycasting is where you use 3d modeling/image rendering in order to cast virtual light onto objects in order to determine their position on a given plane)
-//(ray tracting is where you model the lighting of a scene by rendering all the objects in a given scene)
-const mouse_pos = new THREE.Vector2()
-const raycaster = new THREE.Raycaster()
-let intersects
-let intersect_point_copy = new THREE.Vector3()
+    const geometry4 = new THREE.PlaneGeometry(5, 5)
+    const  material4 = new THREE.MeshBasicMaterial({map:loader.load('assets/cloud.png'), transparent: true}) //creates an invisible 2d plane 
 
-window.addEventListener('mousemove', function(e)
-{ 
-    mouse_pos.x = (e.clientX/window.innerWidth) *2 - 1 //calculates pointer position in normalized device coordinates
-    //normalized device coordinates: screen independent display coordinate system in which x y and z are components from range -1 to 1 
-    mouse_pos.y = -(e.clientY/window.innerHeight)*2 + 1 
-    raycaster.setFromCamera(mouse_pos, camera) //updates the ray with a new origin and direction
-    intersects = raycaster.intersectObjects(scene.children)  //checks for the intersection between the obejct 
+for(let i = 0; i<5; i++){
+        let cloud = new THREE.Mesh(geometry4, material4)
+        cloud.position.y = 60
+        cloud.position.x = Math.floor(Math.random() * 50)+ (-50); 
+        cloud.position.z = Math.floor(Math.random() * 50) + (-50); 
+        cloud.rotation.x -= Math.PI/2
+        cloud.rotation.z += Math.PI
 
-    intersects.forEach(function(intersect) { 
-        if(intersect.object.name === 'floor'){ //checking if the scene child intersected with is the first mesh
-            const highlight_pos = new THREE.Vector3().copy(intersect.point).floor().addScalar(0.5) //calculates the position of the intersection
-            intersect_point_copy = highlight_pos
-            h_mesh.position.set(highlight_pos.x, .5, highlight_pos.z) //sets position
-        }
-    })
-})
+        cloud.material.side = THREE.DoubleSide
+        scene.add(cloud)
+}
 
-window.addEventListener('click', function(e) 
-{ 
-    const box = new THREE.BoxGeometry(1,1,1)
-    const mat = new THREE.MeshBasicMaterial({color:'white'})
-    const box_mesh = new THREE.Mesh(box, mat)
-    box_mesh.position.set(intersect_point_copy.x, 0.5, intersect_point_copy.z)
-    scene.add(box_mesh)
+for(let i = 0; i<5; i++){
+    let mesh2 = new THREE.Mesh(geometry2, material2)
+    mesh2.position.y = 3
+    mesh2.position.x = Math.floor(Math.random() * 50)+ (-50); 
+    mesh2.position.z = Math.floor(Math.random() * 50) + (-50); 
+    mesh2.material.side = THREE.DoubleSide
+    scene.add(mesh2)
+}
 
-})
+for(let i = 0; i<5; i++){
+    let mesh2 = new THREE.Mesh(geometry2, material2)
+    mesh2.position.y = 3
+    mesh2.position.x = Math.floor(Math.random() * 50); 
+    mesh2.position.z = Math.floor(Math.random() * 50) + (-50); 
+    mesh2.material.side = THREE.DoubleSide
+    scene.add(mesh2)
+}
 
-window.addEventListener('resize', () =>
-{
+for(let i = 0; i<5; i++){
+    let mesh2 = new THREE.Mesh(geometry2, material2)
+    mesh2.position.y = 3
+    mesh2.position.x = Math.floor(Math.random() * 50)+ (-50); 
+    mesh2.position.z = Math.floor(Math.random() * 50) ; 
+    mesh2.material.side = THREE.DoubleSide
+    scene.add(mesh2)
+}
 
-    // Update camera
-    camera.aspect = window.innerWidth / window.innerHeight
-    camera.updateProjectionMatrix()
+for(let i = 0; i<5; i++){
+    let mesh2 = new THREE.Mesh(geometry2, material2)
+    mesh2.position.y = 3
+    mesh2.position.x = Math.floor(Math.random() * 50); 
+    mesh2.position.z = Math.floor(Math.random() * 50) ; 
+    mesh2.material.side = THREE.DoubleSide
+    scene.add(mesh2)
+}
 
-    // Update renderer
-    renderer.setSize(window.innerWidth, window.innerHeight)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
-
-// Camera
+scene.background = new THREE.Color(0xa8def0);
+    // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100)
 camera.position.x = 5
 camera.position.y = 5
