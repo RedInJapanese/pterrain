@@ -13,7 +13,7 @@ const scene = new THREE.Scene()
 const loader = new THREE.TextureLoader()
 // Object
     let geometry = new THREE.PlaneGeometry(100, 100)
-    var texture = loader.load( 'sprites/tile.png', function ( texture ) {
+    var texture = loader.load( 'tile.png', function ( texture ) {
 
         texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
         texture.offset.set( 0, 0 );
@@ -28,11 +28,11 @@ const loader = new THREE.TextureLoader()
     scene.add(mesh)
 
     const geometry2 = new THREE.PlaneGeometry(7, 7)
-    const  material2 = new THREE.MeshBasicMaterial({map:loader.load('sprites/tree2.png'), transparent: true}) //creates an invisible 2d plane 
+    const  material2 = new THREE.MeshBasicMaterial({map:loader.load('tree2.png'), transparent: true}) //creates an invisible 2d plane 
 
 
     const geometry3 = new THREE.PlaneGeometry(40, 40)
-    const  material3 = new THREE.MeshBasicMaterial({map:loader.load('sprites/sun.png'), transparent: true}) //creates an invisible 2d plane 
+    const  material3 = new THREE.MeshBasicMaterial({map:loader.load('sun.png'), transparent: true}) //creates an invisible 2d plane 
     const sun = new THREE.Mesh(geometry3, material3)
     sun.position.y = 100
     sun.rotation.x -= Math.PI/2
@@ -40,7 +40,7 @@ const loader = new THREE.TextureLoader()
     scene.add(sun)
 
     const geometry4 = new THREE.PlaneGeometry(5, 5)
-    const  material4 = new THREE.MeshBasicMaterial({map:loader.load('sprites/cloud.png'), transparent: true}) //creates an invisible 2d plane 
+    const  material4 = new THREE.MeshBasicMaterial({map:loader.load('cloud.png'), transparent: true}) //creates an invisible 2d plane 
 
 for(let i = 0; i<5; i++){
         let cloud = new THREE.Mesh(geometry4, material4)
