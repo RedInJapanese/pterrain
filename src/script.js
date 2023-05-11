@@ -149,13 +149,14 @@ controller1.add( line.clone() );
 controller1.add( line2.clone() );
 controller2.add( line.clone() );
 
-let ge = new THREE.PlaneGeometry(0.05, 0.05); 
+let ge = new THREE.PlaneGeometry(0.02, 0.02); 
 let ma = new THREE.MeshBasicMaterial( { color: 'white' } ); 
 let sp = new THREE.Mesh( ge, ma ); 
 let sp2 = new THREE.Mesh( ge, ma ); 
 let sp3 = new THREE.Mesh( ge, ma ); 
 let sp4 = new THREE.Mesh( ge, ma ); 
 let sp5 = new THREE.Mesh( ge, ma ); 
+let sp6 = new THREE.Mesh( ge, ma ); 
 
 
 sp.position.set(0, 0, -0.06)
@@ -164,20 +165,24 @@ sp.rotation.x -= Math.PI/2
 sp2.position.set(0.07, 0, -0.02)
 sp2.rotation.x -= Math.PI/2
 
-sp3.position.set(0.07, 0, 0.06)
+sp3.position.set(0.07, 0, 0.03)
 sp3.rotation.x -= Math.PI/2
 
-sp4.position.set(-0.05, 0, 0.06)
+sp4.position.set(-0.05, 0, -0.04)
 sp4.rotation.x -= Math.PI/2
 
-sp5.position.set(-0.08, 0, -0.02)
+sp5.position.set(-0.07, 0, 0.01)
 sp5.rotation.x -= Math.PI/2
+
+sp6.position.set(-0.05, 0, 0.06)
+sp6.rotation.x -= Math.PI/2
 
 controller2.add(sp.clone())
 controller2.add(sp2.clone())
 controller2.add(sp3.clone())
 controller2.add(sp4.clone())
 controller2.add(sp5.clone())
+controller2.add(sp6.clone())
 
 
 document.body.appendChild( VRButton.createButton( renderer ) );
