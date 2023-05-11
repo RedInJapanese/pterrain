@@ -5,9 +5,12 @@ import * as THREE from 'three'
 import { MeshDepthMaterial } from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 import { VRButton } from 'three/addons/webxr/VRButton.js'
+import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js'
 // Canvas
 const canvas = document.querySelector('canvas.webgl') //create canvas using the webgl class specified in index.html
 
+let controller1, controller2
+let cgrip1, cgrip2
 // Scene
 const scene = new THREE.Scene()
 const loader = new THREE.TextureLoader()
@@ -20,6 +23,7 @@ const loader = new THREE.TextureLoader()
         texture.repeat.set( 50, 50);
     
     } );
+    
     let  material = new THREE.MeshBasicMaterial({map:texture}) //creates an invisible 2d plane 
     let mesh = new THREE.Mesh(geometry, material)
     mesh.position.x = 0
@@ -106,10 +110,64 @@ const renderer = new THREE.WebGLRenderer({
     canvas: canvas
 })
 
+controller1 = renderer.xr.getController(0)
+controller2 = renderer.xr.getController(1)
+
+scene.add(controller1)
+scene.add(controller2)
+
+const cmodfac = new XRControllerModelFactory()
+
+cgrip1 = renderer.xr.getControllerGrip(0)
+cgrip1.add(cmodfac.createControllerModel(cgrip1))
+scene.add(cgrip1)
+
+
+const g = new THREE.BoxGeometry(0.1, 0.1, 0.1)
+const m = new THREE.MeshBasicMaterial({color: 'black'})
+const msh = new THREE.Mesh(g, m)
+
+
+cgrip2 = renderer.xr.getControllerGrip(1)
+cgrip2.add(msh)
+scene.add(cgrip2)
+const geom = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+const geom2 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( -0.01, -0.01, 0 ), new THREE.Vector3( 1, 0, -7) ] );
+
+let line = new THREE.LineSegments( geom );
+line.material.color = new THREE.Color('red')
+line.name = 'line';
+line.scale.z = 5;
+
+let line2 = new THREE.Line( geom2 );
+line2.material.color = new THREE.Color('white')
+line2.name = 'line2';
+
+const color = 0xFFFFFF;
+const intensity = 20;
+const light = new THREE.AmbientLight(color, intensity);
+controller1.add(light);
+
+controller1.add( line.clone() );
+controller1.add( line2.clone() );
+controller2.add( line.clone() );
+
+let ge = new THREE.PlaneGeometry(0.15, 0.15); 
+let ma = new THREE.MeshBasicMaterial( { color: 'white' } ); 
+let sp = new THREE.Mesh( ge, ma ); 
+sp.position.set(1, 0, 0)
+sp.material.DoubleSide = THREE.DoubleSide
+
+controller2.add(sp.clone())
+
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
 renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+
+
 renderer.setAnimationLoop( function () {
     controls.update()
 
