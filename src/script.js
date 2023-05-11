@@ -140,7 +140,7 @@ line2.material.color = new THREE.Color('white')
 line2.name = 'line2';
 
 const color = 0xFFFFFF;
-const intensity = 10;
+const intensity = 5;
 const light = new THREE.AmbientLight(color, intensity);
 controller1.add(light.clone());
 controller2.add(light.clone());
@@ -149,7 +149,7 @@ controller1.add( line.clone() );
 controller1.add( line2.clone() );
 controller2.add( line.clone() );
 
-let ge = new THREE.PlaneGeometry(0.02, 0.02); 
+let ge = new THREE.PlaneGeometry(0.03, 0.03); 
 let ma = new THREE.MeshBasicMaterial( { color: 'white' } ); 
 let sp = new THREE.Mesh( ge, ma ); 
 let sp2 = new THREE.Mesh( ge, ma ); 
@@ -157,6 +157,14 @@ let sp3 = new THREE.Mesh( ge, ma );
 let sp4 = new THREE.Mesh( ge, ma ); 
 let sp5 = new THREE.Mesh( ge, ma ); 
 let sp6 = new THREE.Mesh( ge, ma ); 
+
+
+let sp7 = new THREE.Mesh( ge, ma ); 
+let sp8 = new THREE.Mesh( ge, ma ); 
+let sp9 = new THREE.Mesh( ge, ma ); 
+let sp10 = new THREE.Mesh( ge, ma ); 
+let sp11 = new THREE.Mesh( ge, ma ); 
+let sp12 = new THREE.Mesh( ge, ma ); 
 
 
 sp.position.set(0, 0, -0.06)
@@ -177,12 +185,40 @@ sp5.rotation.x -= Math.PI/2
 sp6.position.set(-0.05, 0, 0.06)
 sp6.rotation.x -= Math.PI/2
 
+
+
+sp7.position.set(0, 0, -0.06)
+sp7.rotation.x -= Math.PI/2
+
+sp8.position.set(-0.07, 0, -0.02)
+sp8.rotation.x -= Math.PI/2
+
+sp9.position.set(-0.07, 0, 0.03)
+sp9.rotation.x -= Math.PI/2
+
+sp10.position.set(0.05, 0, -0.04)
+sp10.rotation.x -= Math.PI/2
+
+sp11.position.set(0.07, 0, 0.01)
+sp11.rotation.x -= Math.PI/2
+
+sp12.position.set(0.05, 0, 0.06)
+sp12.rotation.x -= Math.PI/2
+
 controller2.add(sp.clone())
 controller2.add(sp2.clone())
 controller2.add(sp3.clone())
 controller2.add(sp4.clone())
 controller2.add(sp5.clone())
 controller2.add(sp6.clone())
+
+
+controller1.add(sp7.clone())
+controller1.add(sp8.clone())
+controller1.add(sp9.clone())
+controller1.add(sp10.clone())
+controller1.add(sp11.clone())
+controller1.add(sp12.clone())
 
 
 document.body.appendChild( VRButton.createButton( renderer ) );
