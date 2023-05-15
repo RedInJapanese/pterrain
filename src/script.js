@@ -128,7 +128,13 @@ cgrip2.add(cmodfac.createControllerModel(cgrip2))
 scene.add(cgrip2)
 const geom = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-const geom2 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( -0.01, -0.01, 0 ), new THREE.Vector3( 1, 0, -7) ] );
+const geom2 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, -0.06), new THREE.Vector3( 0, 0, -0.06),] );
+const geom3 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0.07, 0, -0.02), new THREE.Vector3(0.07, 0, -0.02),] );
+const geom4 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0.07, 0, 0.03), new THREE.Vector3(0.07, 0, 0.03),] );
+const geom5 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(-0.05, 0, -0.04), new THREE.Vector3(-0.05, 0, -0.04),] );
+const geom6 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(-0.07, 0, 0.01), new THREE.Vector3(-0.07, 0, 0.01),] );
+const geom7 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(-0.05, 0, 0.06), new THREE.Vector3(-0.05, 0, 0.06),] );
+
 
 let line = new THREE.LineSegments( geom );
 line.material.color = new THREE.Color('red')
@@ -139,15 +145,43 @@ let line2 = new THREE.Line( geom2 );
 line2.material.color = new THREE.Color('white')
 line2.name = 'line2';
 
+let line3 = new THREE.Line( geom3 );
+line3.material.color = new THREE.Color('white')
+line3.name = 'line3';
+
+let line4 = new THREE.Line( geom4 );
+line4.material.color = new THREE.Color('white')
+line4.name = 'line4';
+
+let line5 = new THREE.Line( geom5 );
+line5.material.color = new THREE.Color('white')
+line5.name = 'line5';
+
+let line6 = new THREE.Line( geom6 );
+line6.material.color = new THREE.Color('white')
+line6.name = 'line6';
+
+let line7 = new THREE.Line( geom7 );
+line7.material.color = new THREE.Color('white')
+line7.name = 'line7';
+
 const color = 0xFFFFFF;
 const intensity = 5;
 const light = new THREE.AmbientLight(color, intensity);
 controller1.add(light.clone());
 controller2.add(light.clone());
 
-controller1.add( line.clone() );
+// controller1.add( line.clone() );
 controller1.add( line2.clone() );
-controller2.add( line.clone() );
+controller1.add( line3.clone() );
+controller1.add( line4.clone() );
+controller1.add( line5.clone() );
+controller1.add( line6.clone() );
+controller1.add( line7.clone() );
+
+// controller2.add( line.clone() );
+controller2.add( line2.clone() );
+
 
 let ge = new THREE.PlaneGeometry(0.03, 0.03); 
 let ma = new THREE.MeshBasicMaterial( { color: 'white' } ); 
