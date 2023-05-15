@@ -128,12 +128,12 @@ cgrip2.add(cmodfac.createControllerModel(cgrip2))
 scene.add(cgrip2)
 const geom = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
 
-const geom2 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, -0.06), new THREE.Vector3( 0, 0, -0.06),] );
-const geom3 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0.07, 0, -0.02), new THREE.Vector3(0.07, 0, -0.02),] );
-const geom4 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0.07, 0, 0.03), new THREE.Vector3(0.07, 0, 0.03),] );
-const geom5 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(-0.05, 0, -0.04), new THREE.Vector3(-0.05, 0, -0.04),] );
-const geom6 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(-0.07, 0, 0.01), new THREE.Vector3(-0.07, 0, 0.01),] );
-const geom7 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(-0.05, 0, 0.06), new THREE.Vector3(-0.05, 0, 0.06),] );
+const geom2 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, -0.06), new THREE.Vector3( 0, 0, -0.06)]);
+const geom3 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( -0.07, 0, -0.02), new THREE.Vector3(-0.07, 0, -0.02)]);
+const geom4 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(-0.07, 0, 0.03), new THREE.Vector3(-0.07, 0, 0.03)]);
+const geom5 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(0.05, 0, -0.04), new THREE.Vector3(0.05, 0, -0.04)]);
+const geom6 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(0.07, 0, 0.01), new THREE.Vector3(0.07, 0, 0.01)]);
+const geom7 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3(0.05, 0, 0.06), new THREE.Vector3(0.05, 0, 0.06)]);
 
 
 let line = new THREE.LineSegments( geom );
