@@ -269,16 +269,19 @@ controller1.addEventListener( 'connected', ( event )=> {
 controller2.addEventListener( 'connected', ( event )=> {
     console.log(event.data.handedness) //we have a modern controller
     console.log(event.data)
-    console.log(event.data.gamepad) //we have a modern controller
     console.log(event.data.gamepad.buttons) //we have a modern controller
+    console.log(event.data.gamepad.buttons[0]) //we have a modern controller
     controller2.gamepad = event.data.gamepad
+    console.log(controller2.gamepad.buttons[0])
     console.log(controller2.gamepad.buttons[0].pressed)
-    console.log(event.data.gamepad.buttons[0].touched)
+    console.log(event.data.gamepad.buttons[0].pressed)
+
+
     if ( controller2.gamepad.axes[3] < 0 ){
         controller2.add( line.clone() );
     } 
-    if ( controller2.gamepad.buttons[0].pressed = true){
-        controller2.add( sp7.clone() );
+    if ( controller2.gamepad.buttons[0].pressed == true){
+        controller2.add( line.clone());
     }
     // console.log(event.data.buttons[1].pressed)
     // console.log(event.data.buttons[2].pressed)
