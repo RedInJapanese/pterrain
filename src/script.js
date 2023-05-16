@@ -377,6 +377,18 @@ controller2.addEventListener( 'squeezeend', ( event )=> {
     }
 });
 
+const session = renderer.xr.getSession();
+if(session) {
+for (const source of frame.session.inputSources) {
+    const gamepad = source.gamepad;
+    if (gamepad) {
+      if (gamepad.buttons[4].pressed) {
+        controller2.add( line);
+      }
+    }
+  }
+}
+  
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
 renderer.setSize(window.innerWidth, window.innerHeight)
