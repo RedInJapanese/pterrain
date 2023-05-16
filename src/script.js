@@ -254,12 +254,13 @@ controller1.addEventListener( 'connected', ( event )=> {
 controller2.addEventListener( 'selectstart', ( event )=> {
     controller2.gamepad = event.data.gamepad
     if ( controller2.gamepad.buttons[0].pressed == true){
-        controller2.add( line.clone());
+        controller2.add( line);
     }
 });
 controller2.addEventListener( 'selectend', ( event )=> {
+    controller2.gamepad = event.data.gamepad
     if ( controller2.gamepad.buttons[0].pressed == false){
-        controller2.remove( line.clone());
+        controller2.remove(line);
     }
 });
 
