@@ -255,8 +255,11 @@ controller2.addEventListener( 'selectstart', ( event )=> {
     controller2.gamepad = event.data.gamepad
     if ( controller2.gamepad.buttons[0].pressed == true){
         controller2.add( line.clone());
-    } else {
-        controller2.remove(line.clone())
+    }
+});
+controller2.addEventListener( 'selectend', ( event )=> {
+    if ( controller2.gamepad.buttons[0].pressed == false){
+        controller2.remove( line.clone());
     }
 });
 
