@@ -254,6 +254,10 @@ controller1.add(sp10.clone())
 controller1.add(sp11.clone())
 controller1.add(sp12.clone())
 
+controller1.addEventListener( 'connected', ( event )=> {
+    console.log(event.data.gamepad) //we have a modern controller
+    console.log(controller1.gamepad)
+});
 
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
