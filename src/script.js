@@ -258,15 +258,38 @@ controller1.addEventListener( 'connected', ( event )=> {
     console.log(event.data.handedness) //we have a modern controller
     console.log(event.data.gamepad) //we have a modern controller
     console.log(event.data.gamepad.buttons) //we have a modern controller
+    // console.log(event.data.gamepad.buttons[1].pressed)
+    // console.log(event.data.gamepad.buttons[2].pressed)
+    // console.log(event.data.gamepad.buttons[3].pressed)
+    // console.log(event.data.gamepad.buttons[4].pressed)
+    // console.log(event.data.gamepad.buttons[5].pressed)
+    // console.log(event.data.gamepad.buttons[6].pressed)
 });
 
 controller2.addEventListener( 'connected', ( event )=> {
     console.log(event.data.handedness) //we have a modern controller
+    console.log(event.data)
     console.log(event.data.gamepad) //we have a modern controller
-    console.log(event.data.gamepad.buttons[1].pressed)
-    if(event.data.gamepad.buttons[1].pressed == true) {
+    console.log(event.data.gamepad.buttons) //we have a modern controller
+    controller2.gamepad = event.data.gamepad
+    console.log(controller2.gamepad.buttons[0].pressed)
+    console.log(event.data.gamepad.buttons[0].touched)
+    if ( controller2.gamepad.axes[3] < 0 ){
         controller2.add( line.clone() );
+    } 
+    if ( controller2.gamepad.buttons[0].pressed = true){
+        controller2.add( sp7.clone() );
     }
+    // console.log(event.data.buttons[1].pressed)
+    // console.log(event.data.buttons[2].pressed)
+    // console.log(event.data.buttons[3].pressed)
+    // console.log(event.data.buttons[4].pressed)
+    // console.log(event.data.buttons[5].pressed)
+    // console.log(event.data.buttons[6].pressed)
+
+    // if(event.data.buttons[0].pressed == true) {
+    //     controller2.add( line.clone() );
+    // }
 });
 
 document.body.appendChild( VRButton.createButton( renderer ) );
