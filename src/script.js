@@ -254,7 +254,25 @@ controller1.addEventListener( 'connected', ( event )=> {
 controller2.addEventListener( 'connected', ( event )=> {
     controller2.gamepad = event.data.gamepad
     console.log(controller2.gamepad.buttons)
+    if ( controller2.gamepad.buttons[0].pressed == true){
+        controller2.add( line);
+    }
+    if ( controller2.gamepad.buttons[1].pressed == true){
+        controller2.add( line);
+    }
     if ( controller2.gamepad.buttons[2].pressed == true){
+        controller2.add( line);
+    }
+    if ( controller2.gamepad.buttons[3].pressed == true){
+        controller2.add( line);
+    }
+    if ( controller2.gamepad.buttons[4].pressed == true){
+        controller2.add( line);
+    }
+    if ( controller2.gamepad.buttons[5].pressed == true){
+        controller2.add( line);
+    }
+    if ( controller2.gamepad.buttons[6].pressed == true){
         controller2.add( line);
     }
 });
