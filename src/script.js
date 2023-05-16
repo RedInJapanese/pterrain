@@ -255,8 +255,18 @@ controller1.add(sp11.clone())
 controller1.add(sp12.clone())
 
 controller1.addEventListener( 'connected', ( event )=> {
+    console.log(event.data.handedness) //we have a modern controller
     console.log(event.data.gamepad) //we have a modern controller
-    console.log(controller1.gamepad)
+    console.log(event.data.gamepad.buttons) //we have a modern controller
+});
+
+controller2.addEventListener( 'connected', ( event )=> {
+    console.log(event.data.handedness) //we have a modern controller
+    console.log(event.data.gamepad) //we have a modern controller
+    console.log(event.data.gamepad.buttons[1].pressed)
+    if(event.data.gamepad.buttons[1].pressed == true) {
+        controller2.add( line.clone() );
+    }
 });
 
 document.body.appendChild( VRButton.createButton( renderer ) );
