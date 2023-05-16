@@ -67,33 +67,6 @@ for(let i = 0; i<5; i++){
     scene.add(mesh2)
 }
 
-for(let i = 0; i<5; i++){
-    let mesh2 = new THREE.Mesh(geometry2, material2)
-    mesh2.position.y = 3
-    mesh2.position.x = Math.floor(Math.random() * 50); 
-    mesh2.position.z = Math.floor(Math.random() * 50) + (-50); 
-    mesh2.material.side = THREE.DoubleSide
-    scene.add(mesh2)
-}
-
-for(let i = 0; i<5; i++){
-    let mesh2 = new THREE.Mesh(geometry2, material2)
-    mesh2.position.y = 3
-    mesh2.position.x = Math.floor(Math.random() * 50)+ (-50); 
-    mesh2.position.z = Math.floor(Math.random() * 50) ; 
-    mesh2.material.side = THREE.DoubleSide
-    scene.add(mesh2)
-}
-
-for(let i = 0; i<5; i++){
-    let mesh2 = new THREE.Mesh(geometry2, material2)
-    mesh2.position.y = 3
-    mesh2.position.x = Math.floor(Math.random() * 50); 
-    mesh2.position.z = Math.floor(Math.random() * 50) ; 
-    mesh2.material.side = THREE.DoubleSide
-    scene.add(mesh2)
-}
-
 scene.background = new THREE.Color(0xa8def0);
     // Camera
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 100)
@@ -254,6 +227,18 @@ controller1.add(sp10.clone())
 controller1.add(sp11.clone())
 controller1.add(sp12.clone())
 
+
+let rtrigger = false
+
+function line_appear(event){
+    controller2.gamepad = event.data.gamepad
+    if ( controller2.gamepad.buttons[0].pressed == true){
+        controller2.add( line.clone());
+    } else {
+        controller2.remove(line.clone())
+    }
+}
+
 controller1.addEventListener( 'connected', ( event )=> {
     console.log(event.data.handedness) //we have a modern controller
     console.log(event.data.gamepad) //we have a modern controller
@@ -266,33 +251,13 @@ controller1.addEventListener( 'connected', ( event )=> {
     // console.log(event.data.gamepad.buttons[6].pressed)
 });
 
-controller2.addEventListener( 'connected', ( event )=> {
-    console.log(event.data.handedness) //we have a modern controller
-    console.log(event.data)
-    console.log(event.data.gamepad.buttons) //we have a modern controller
-    console.log(event.data.gamepad.buttons[0]) //we have a modern controller
+controller2.addEventListener( 'selectstart', ( event )=> {
     controller2.gamepad = event.data.gamepad
-    console.log(controller2.gamepad.buttons[0])
-    console.log(controller2.gamepad.buttons[0].pressed)
-    console.log(event.data.gamepad.buttons[0].pressed)
-
-
-    if ( controller2.gamepad.axes[3] < 0 ){
-        controller2.add( sp7.clone() );
-    } 
     if ( controller2.gamepad.buttons[0].pressed == true){
         controller2.add( line.clone());
+    } else {
+        controller2.remove(line.clone())
     }
-    // console.log(event.data.buttons[1].pressed)
-    // console.log(event.data.buttons[2].pressed)
-    // console.log(event.data.buttons[3].pressed)
-    // console.log(event.data.buttons[4].pressed)
-    // console.log(event.data.buttons[5].pressed)
-    // console.log(event.data.buttons[6].pressed)
-
-    // if(event.data.buttons[0].pressed == true) {
-    //     controller2.add( line.clone() );
-    // }
 });
 
 document.body.appendChild( VRButton.createButton( renderer ) );
@@ -301,8 +266,7 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
-
-renderer.setAnimationLoop( function () {
+function render() {
     controls.update()
 
     // Render
@@ -310,7 +274,11 @@ renderer.setAnimationLoop( function () {
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
-})
+}
+
+renderer.setAnimationLoop(render)
+
+
 const tick = () =>
 {
 
