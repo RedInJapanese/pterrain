@@ -278,7 +278,7 @@ controller2.addEventListener( 'connected', ( event )=> {
 
 
     if ( controller2.gamepad.axes[3] < 0 ){
-        controller2.add( line.clone() );
+        controller2.add( sp7.clone() );
     } 
     if ( controller2.gamepad.buttons[0].pressed == true){
         controller2.add( line.clone());
