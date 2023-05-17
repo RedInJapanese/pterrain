@@ -271,31 +271,8 @@ function line_appear(){
         if ( controller2.gamepad.buttons[6].pressed == true){
             controller2.add( line);
         }
-    }
-}
-
-function line_disappear(){
-    if(controller2.gamepad){
-        if ( controller2.gamepad.buttons[0].pressed == false){
-            controller2.remove( line);
-        }
-        if ( controller2.gamepad.buttons[1].pressed == false){
-            controller2.remove( line);
-        }
-        if ( controller2.gamepad.buttons[2].pressed == false){
-            controller2.remove( line);
-        }
-        if ( controller2.gamepad.buttons[3].pressed == false){
-            controller2.remove( line);
-        }
-        if ( controller2.gamepad.buttons[4].pressed == false){
-            controller2.remove( line);
-        }
-        if ( controller2.gamepad.buttons[5].pressed == false){
-            controller2.remove( line);
-        }
-        if ( controller2.gamepad.buttons[6].pressed == false){
-            controller2.remove( line);
+        else{
+            controller2.remove(line)
         }
     }
 }
