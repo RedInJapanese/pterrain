@@ -111,6 +111,7 @@ const geom7 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 
 
 let line = new THREE.LineSegments( geom );
 line.material.color = new THREE.Color('red')
+line.material.visible = false
 line.name = 'line';
 line.scale.z = 5;
 
@@ -243,6 +244,7 @@ let rtrigger = false
 //     // console.log(event.data.gamepad.buttons[5].pressed)
 //     // console.log(event.data.gamepad.buttons[6].pressed)
 // });
+controller2.add( line);
 
 controller2.addEventListener( 'connected', ( event )=> {
     controller2.gamepad = event.data.gamepad
@@ -251,25 +253,28 @@ controller2.addEventListener( 'connected', ( event )=> {
 function line_appear(){
     if(controller2.gamepad){
         if ( controller2.gamepad.buttons[0].pressed == true){
-            controller2.add( line);
+            controller2.line.material.visible = true;
         }
         if ( controller2.gamepad.buttons[1].pressed == true){
-            controller2.add( line);
+            controller2.line.material.visible = true;
         }
         if ( controller2.gamepad.buttons[2].pressed == true){
-            controller2.add( line);
+            controller2.line.material.visible = true;
         }
         if ( controller2.gamepad.buttons[3].pressed == true){
-            controller2.add( line);
+            controller2.line.material.visible = true;
         }
         if ( controller2.gamepad.buttons[4].pressed == true){
-            controller2.add( line);
+            controller2.line.material.visible = true;
         }
         if ( controller2.gamepad.buttons[5].pressed == true){
-            controller2.add( line);
+            controller2.line.material.visible = true;
         }
         if ( controller2.gamepad.buttons[6].pressed == true){
-            controller2.add( line);
+            controller2.line.material.visible = true;
+        }
+        else {
+
         }
     }
 }
@@ -382,11 +387,11 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
 function render() {
+    line_appear()
     controls.update()
     // Render
     renderer.render(scene, camera)
 
-    line_appear()
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
