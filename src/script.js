@@ -379,7 +379,7 @@ function line_appear(event){
 
 const session = renderer.xr.getSession();
 if(session) {
-for (const source of frame.session.inputSources) {
+for (const source of session.inputSources) {
     const gamepad = source.gamepad;
     if (gamepad) {
       if (gamepad.buttons[4].pressed) {
