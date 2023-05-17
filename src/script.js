@@ -390,7 +390,6 @@ function render() {
     renderer.render(scene, camera)
 
     line_appear()
-    line_disappear()
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
