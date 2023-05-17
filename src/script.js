@@ -230,14 +230,7 @@ controller1.add(sp12.clone())
 
 let rtrigger = false
 
-function line_appear(event){
-    controller2.gamepad = event.data.gamepad
-    if ( controller2.gamepad.buttons[0].pressed == true){
-        controller2.add( line.clone());
-    } else {
-        controller2.remove(line.clone())
-    }
-}
+
 
 // controller1.addEventListener( 'connected', ( event )=> {
 //     console.log(event.data.handedness) //we have a modern controller
@@ -253,29 +246,34 @@ function line_appear(event){
 
 controller2.addEventListener( 'connected', ( event )=> {
     controller2.gamepad = event.data.gamepad
-    console.log(controller2.gamepad.buttons)
-    if ( controller2.gamepad.buttons[0].pressed == true){
-        controller2.add( line);
-    }
-    if ( controller2.gamepad.buttons[1].pressed == true){
-        controller2.add( line);
-    }
-    if ( controller2.gamepad.buttons[2].pressed == true){
-        controller2.add( line);
-    }
-    if ( controller2.gamepad.buttons[3].pressed == true){
-        controller2.add( line);
-    }
-    if ( controller2.gamepad.buttons[4].pressed == true){
-        controller2.add( line);
-    }
-    if ( controller2.gamepad.buttons[5].pressed == true){
-        controller2.add( line);
-    }
-    if ( controller2.gamepad.buttons[6].pressed == true){
-        controller2.add( line);
-    }
 });
+
+function line_appear(){
+    if(controller2.gamepad){
+        if ( controller2.gamepad.buttons[0].pressed == true){
+            controller2.add( line);
+        }
+        if ( controller2.gamepad.buttons[1].pressed == true){
+            controller2.add( line);
+        }
+        if ( controller2.gamepad.buttons[2].pressed == true){
+            controller2.add( line);
+        }
+        if ( controller2.gamepad.buttons[3].pressed == true){
+            controller2.add( line);
+        }
+        if ( controller2.gamepad.buttons[4].pressed == true){
+            controller2.add( line);
+        }
+        if ( controller2.gamepad.buttons[5].pressed == true){
+            controller2.add( line);
+        }
+        if ( controller2.gamepad.buttons[6].pressed == true){
+            controller2.add( line);
+        }
+    }
+}
+
 // controller2.addEventListener( 'selectstart', ( event )=> {
 //     controller2.gamepad = event.data.gamepad
 //     console.log(controller2.gamepad.buttons)
@@ -376,18 +374,6 @@ controller2.addEventListener( 'connected', ( event )=> {
 //         controller2.remove( line);
 //     }
 // });
-
-const session = renderer.xr.getSession();
-if(session) {
-for (const source of session.inputSources) {
-    const gamepad = source.gamepad;
-    if (gamepad) {
-      if (gamepad.buttons[4].pressed) {
-        controller2.add( line);
-      }
-    }
-  }
-}
   
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
@@ -397,10 +383,10 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 function render() {
     controls.update()
-
     // Render
     renderer.render(scene, camera)
 
+    line_appear()
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
