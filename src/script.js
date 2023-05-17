@@ -271,9 +271,6 @@ function line_appear(){
         if ( controller2.gamepad.buttons[6].pressed == true){
             controller2.add( line);
         }
-        else{
-            controller2.remove(line)
-        }
     }
 }
 
