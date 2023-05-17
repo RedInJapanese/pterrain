@@ -274,6 +274,32 @@ function line_appear(){
     }
 }
 
+function line_disappear(){
+    if(controller2.gamepad){
+        if ( controller2.gamepad.buttons[0].pressed == false){
+            controller2.remove( line);
+        }
+        if ( controller2.gamepad.buttons[1].pressed == false){
+            controller2.remove( line);
+        }
+        if ( controller2.gamepad.buttons[2].pressed == false){
+            controller2.remove( line);
+        }
+        if ( controller2.gamepad.buttons[3].pressed == false){
+            controller2.remove( line);
+        }
+        if ( controller2.gamepad.buttons[4].pressed == false){
+            controller2.remove( line);
+        }
+        if ( controller2.gamepad.buttons[5].pressed == false){
+            controller2.remove( line);
+        }
+        if ( controller2.gamepad.buttons[6].pressed == false){
+            controller2.remove( line);
+        }
+    }
+}
+
 // controller2.addEventListener( 'selectstart', ( event )=> {
 //     controller2.gamepad = event.data.gamepad
 //     console.log(controller2.gamepad.buttons)
@@ -387,6 +413,7 @@ function render() {
     renderer.render(scene, camera)
 
     line_appear()
+    line_disappear()
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
 }
