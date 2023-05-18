@@ -111,7 +111,6 @@ const geom7 = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 
 
 let line = new THREE.LineSegments( geom );
 line.material.color = new THREE.Color('red')
-line.material.visible = false
 line.name = 'line';
 line.scale.z = 5;
 
@@ -229,8 +228,7 @@ controller1.add(sp11.clone())
 controller1.add(sp12.clone())
 
 
-let rtrigger = false
-
+let held = false
 
 
 // controller1.addEventListener( 'connected', ( event )=> {
@@ -244,7 +242,6 @@ let rtrigger = false
 //     // console.log(event.data.gamepad.buttons[5].pressed)
 //     // console.log(event.data.gamepad.buttons[6].pressed)
 // });
-controller2.add( line);
 
 controller2.addEventListener( 'connected', ( event )=> {
     controller2.gamepad = event.data.gamepad
@@ -252,30 +249,13 @@ controller2.addEventListener( 'connected', ( event )=> {
 
 function line_appear(){
     if(controller2.gamepad){
-        if ( controller2.gamepad.buttons[0].pressed == true){
-            controller2.line.material.visible = true;
+        for(let i = 0; i< controller2.gamepad.buttons.length; i++){
+            if(controller2.gamepad.buttons[i].pressed){
+                controller2.add(line)
+                return
+            } 
         }
-        if ( controller2.gamepad.buttons[1].pressed == true){
-            controller2.line.material.visible = true;
-        }
-        if ( controller2.gamepad.buttons[2].pressed == true){
-            controller2.line.material.visible = true;
-        }
-        if ( controller2.gamepad.buttons[3].pressed == true){
-            controller2.line.material.visible = true;
-        }
-        if ( controller2.gamepad.buttons[4].pressed == true){
-            controller2.line.material.visible = true;
-        }
-        if ( controller2.gamepad.buttons[5].pressed == true){
-            controller2.line.material.visible = true;
-        }
-        if ( controller2.gamepad.buttons[6].pressed == true){
-            controller2.line.material.visible = true;
-        }
-        else {
-
-        }
+        controller2.remove(line)
     }
 }
 
