@@ -158,27 +158,27 @@ controller2.add( line2.clone() );
 
 let ge = new THREE.PlaneGeometry(0.03, 0.03); 
 let ma = new THREE.MeshBasicMaterial( { color: 'white' } ); 
-let sp = new THREE.Mesh( ge, ma ); 
-let sp2 = new THREE.Mesh( ge, ma ); 
+let rtrig = new THREE.Mesh( ge, ma ); 
+let rsq = new THREE.Mesh( ge, ma ); 
 let sp3 = new THREE.Mesh( ge, ma ); 
 let sp4 = new THREE.Mesh( ge, ma ); 
 let sp5 = new THREE.Mesh( ge, ma ); 
 let sp6 = new THREE.Mesh( ge, ma ); 
 
 
-let sp7 = new THREE.Mesh( ge, ma ); 
-let sp8 = new THREE.Mesh( ge, ma ); 
+let ltrig = new THREE.Mesh( ge, ma ); 
+let lsq = new THREE.Mesh( ge, ma ); 
 let sp9 = new THREE.Mesh( ge, ma ); 
 let sp10 = new THREE.Mesh( ge, ma ); 
 let sp11 = new THREE.Mesh( ge, ma ); 
 let sp12 = new THREE.Mesh( ge, ma ); 
 
 
-sp.position.set(0, 0, -0.06)
-sp.rotation.x -= Math.PI/2
+rtrig.position.set(0, 0, -0.06)
+rtrig.rotation.x -= Math.PI/2
 
-sp2.position.set(0.07, 0, -0.02)
-sp2.rotation.x -= Math.PI/2
+rsq.position.set(0.07, 0, -0.02)
+rsq.rotation.x -= Math.PI/2
 
 sp3.position.set(0.07, 0, 0.03)
 sp3.rotation.x -= Math.PI/2
@@ -194,11 +194,11 @@ sp6.rotation.x -= Math.PI/2
 
 
 
-sp7.position.set(0, 0, -0.06)
-sp7.rotation.x -= Math.PI/2
+ltrig.position.set(0, 0, -0.06)
+ltrig.rotation.x -= Math.PI/2
 
-sp8.position.set(-0.07, 0, -0.02)
-sp8.rotation.x -= Math.PI/2
+lsq.position.set(-0.07, 0, -0.02)
+lsq.rotation.x -= Math.PI/2
 
 sp9.position.set(-0.07, 0, 0.03)
 sp9.rotation.x -= Math.PI/2
@@ -212,154 +212,112 @@ sp11.rotation.x -= Math.PI/2
 sp12.position.set(0.05, 0, 0.06)
 sp12.rotation.x -= Math.PI/2
 
-controller2.add(sp.clone())
-controller2.add(sp2.clone())
+
 controller2.add(sp3.clone())
 controller2.add(sp4.clone())
 controller2.add(sp5.clone())
 controller2.add(sp6.clone())
 
 
-controller1.add(sp7.clone())
-controller1.add(sp8.clone())
+controller1.add(ltrig.clone())
+controller1.add(lsq.clone())
 controller1.add(sp9.clone())
 controller1.add(sp10.clone())
 controller1.add(sp11.clone())
 controller1.add(sp12.clone())
 
-
-let held = false
-
-
-// controller1.addEventListener( 'connected', ( event )=> {
-//     console.log(event.data.handedness) //we have a modern controller
-//     console.log(event.data.gamepad) //we have a modern controller
-//     console.log(event.data.gamepad.buttons) //we have a modern controller
-//     // console.log(event.data.gamepad.buttons[1].pressed)
-//     // console.log(event.data.gamepad.buttons[2].pressed)
-//     // console.log(event.data.gamepad.buttons[3].pressed)
-//     // console.log(event.data.gamepad.buttons[4].pressed)
-//     // console.log(event.data.gamepad.buttons[5].pressed)
-//     // console.log(event.data.gamepad.buttons[6].pressed)
-// });
-
 controller2.addEventListener( 'connected', ( event )=> {
     controller2.gamepad = event.data.gamepad
 });
+
+let c2_prims = [rtrig, rsq, rsq, rsq, rsq, rsq, rsq]
 
 function line_appear(){
     if(controller2.gamepad){
         for(let i = 0; i< controller2.gamepad.buttons.length; i++){
             if(controller2.gamepad.buttons[i].pressed){
-                controller2.add(line)
-                return
-            } 
+                button_start(i)
+            }
+            // if(controller2.gamepad.buttons[0].pressed){
+            //     controller2.add(rtrig)
+            //     console.log("a")
+            //     held = true
+            // } 
+            // if(controller2.gamepad.buttons[1].pressed){
+            //     controller2.add(rsq)
+            //     console.log("b")
+            //     held = true
+            // } 
+            // if(controller2.gamepad.buttons[2].pressed){
+            //     controller2.add(rsq)
+            //     console.log("c")
+            //     held = true
+            // } 
+            // if(controller2.gamepad.buttons[3].pressed){
+            //     controller2.add(rsq)
+            //     console.log("d")
+            //     held = true
+            // } 
+            // if(controller2.gamepad.buttons[4].pressed){
+            //     controller2.add(rsq)
+            //     console.log("e")
+            //     held = true
+            // } 
+            // if(held){
+            //     return
+            // }
         }
-        controller2.remove(line)
+
     }
 }
 
-// controller2.addEventListener( 'selectstart', ( event )=> {
-//     controller2.gamepad = event.data.gamepad
-//     console.log(controller2.gamepad.buttons)
-//     if ( controller2.gamepad.buttons[0].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[1].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[2].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[3].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[4].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[5].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[6].pressed == true){
-//         controller2.add( line);
-//     }
-// });
-// controller2.addEventListener( 'selectend', ( event )=> {
-//     controller2.gamepad = event.data.gamepad
-//     console.log(controller2.gamepad.buttons)
-//     if ( controller2.gamepad.buttons[0].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[1].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[2].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[3].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[4].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[5].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[6].pressed == false){
-//         controller2.remove( line);
-//     }
-// });
-// controller2.addEventListener( 'squeezestart', ( event )=> {
-//     controller2.gamepad = event.data.gamepad
-//     console.log(controller2.gamepad.buttons)
-//     if ( controller2.gamepad.buttons[0].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[1].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[2].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[3].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[4].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[5].pressed == true){
-//         controller2.add( line);
-//     }
-//     if ( controller2.gamepad.buttons[6].pressed == true){
-//         controller2.add( line);
-//     }
-// });
-// controller2.addEventListener( 'squeezeend', ( event )=> {
-//     controller2.gamepad = event.data.gamepad
-//     console.log(controller2.gamepad.buttons)
-//     if ( controller2.gamepad.buttons[0].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[1].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[2].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[3].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[4].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[5].pressed == false){
-//         controller2.remove( line);
-//     }
-//     if ( controller2.gamepad.buttons[6].pressed == false){
-//         controller2.remove( line);
-//     }
-// });
-  
+function line_disappear(){
+    if(controller2.gamepad){
+        for(let i = 0; i< controller2.gamepad.buttons.length; i++){
+            if(!controller2.gamepad.buttons[i].pressed){
+                button_end(i)
+            }
+            // if(controller2.gamepad.buttons[0].pressed){
+            //     controller2.add(rtrig)
+            //     console.log("a")
+            //     held = true
+            // } 
+            // if(controller2.gamepad.buttons[1].pressed){
+            //     controller2.add(rsq)
+            //     console.log("b")
+            //     held = true
+            // } 
+            // if(controller2.gamepad.buttons[2].pressed){
+            //     controller2.add(rsq)
+            //     console.log("c")
+            //     held = true
+            // } 
+            // if(controller2.gamepad.buttons[3].pressed){
+            //     controller2.add(rsq)
+            //     console.log("d")
+            //     held = true
+            // } 
+            // if(controller2.gamepad.buttons[4].pressed){
+            //     controller2.add(rsq)
+            //     console.log("e")
+            //     held = true
+            // } 
+            // if(held){
+            //     return
+            // }
+        }
+
+    }
+}
+
+function button_start(i){
+    controller2.add(c2_prims[i])
+}
+ 
+function button_end(i){
+    controller2.remove(c2_prims[i])
+}
+
 document.body.appendChild( VRButton.createButton( renderer ) );
 renderer.xr.enabled = true;
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -367,6 +325,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 
 function render() {
+    line_disappear()
     line_appear()
     controls.update()
     // Render
